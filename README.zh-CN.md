@@ -2,10 +2,10 @@
 <br> 
 <br>
 <img src="./src/assets/images/logo.png" height="140" />
-<h3> Slash Admin </h3>
+<h3> YuZhi Admin </h3>
   <p>
     <p style="font-size: 14px">
-      Slash Admin 是一款现代化的后台管理模板，基于 React 18、Vite、Ant Design 和 TypeScript 构建。它旨在帮助开发人员快速搭建功能强大的后台管理系统。
+      Yuzhi Admin 是一款现代化的后台管理模板，基于 React 18、Vite、Ant Design 和 TypeScript 构建
     </p>
     <br />
     <br />
@@ -21,19 +21,6 @@
 
 **中文** | [English](./README.md)
 
-## 赞助 
-<div style="display: flex; gap: 50px"> 
-  <img style="width:300px" src="https://d3george.github.io/github-static/pay/weixin.jpg" >
-  <img style="width:280px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
-</div>
-
-
-## 预览
-+ https://admin.slashspaces.com/
-
-|![login.png](https://d3george.github.io/github-static/slash-admin/login.jpeg)|![login_dark.png](https://d3george.github.io/github-static/slash-admin/login_dark.jpeg)
-| ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-|![analysis.png](https://d3george.github.io/github-static/slash-admin/analysis.png)|![workbench.png](https://d3george.github.io/github-static/slash-admin/workbench.png)
 ## 特性
 
 - 使用 React 18 hooks 进行构建。
@@ -51,12 +38,6 @@
 - 使用 React-Query 进行数据获取
 
 ## 快速开始
-
-### 获取项目代码
-
-```bash
-git clone https://github.com/d3george/slash-admin.git
-```
 
 ### 安装依赖
 
