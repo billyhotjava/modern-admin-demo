@@ -8,9 +8,8 @@
     <p style="font-size: 14px">
       YuZhi Admin is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. 
     </p>
-
+  </p>
 ## Features
-
 - Built using React 18 hooks.
 - Powered by Vite for rapid development and hot module replacement.
 - Integrates Ant Design, providing a rich set of UI components and design patterns.
