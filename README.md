@@ -1,38 +1,13 @@
+
 <div align="center"> 
 <br> 
 <br>
 <img src="./src/assets/images/logo.png" height="140" />
-<h3> Slash Admin </h3>
+<h3> Yuzhi Admin </h3>
   <p>
     <p style="font-size: 14px">
-      Slash Admin is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. It is designed to help developers quickly create powerful admin management systems.
+      YuZhi Admin is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. 
     </p>
-    <br />
-    <br />
-    <a href="https://admin.slashspaces.com/">Preview</a>
-    ·
-    <a href="https://discord.gg/fXemAXVNDa">Discord</a>
-    ·
-    <a href="https://docs-admin.slashspaces.com/">Document</a>
-    <br />
-    <br />
-    <a href="https://trendshift.io/repositories/6387" target="_blank"><img src="https://trendshift.io/api/badge/repositories/6387" alt="d3george%2Fslash-admin | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-</div>
-
-**English** | [中文](./README.zh-CN.md)
-
-##  Sponsor
-<div style="display: flex; gap: 50px"> 
-  <img style="width:300px" src="https://d3george.github.io/github-static/pay/weixin.jpg" >
-  <img style="width:280px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
-</div>
-
-## Preview
-+ https://admin.slashspaces.com/
-
-|![login.png](https://d3george.github.io/github-static/slash-admin/login.jpeg)|![login_dark.png](https://d3george.github.io/github-static/slash-admin/login_dark.jpeg)
-| ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-|![analysis.png](https://d3george.github.io/github-static/slash-admin/analysis.png)|![workbench.png](https://d3george.github.io/github-static/slash-admin/workbench.png)
 
 ## Features
 
