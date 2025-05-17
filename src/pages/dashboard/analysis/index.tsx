@@ -9,17 +9,16 @@ import ChartPie from "@/pages/components/chart/view/chart-pie";
 import ChartRadar from "@/pages/components/chart/view/chart-radar";
 import { themeVars } from "@/theme/theme.css";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { Title } from "@/ui/typography";
 import AnalysisCard from "./analysis-card";
-import AnalysisNews from "./analysis-news";
 import AnalysisOrderTimeline from "./analysis-order-timeline";
-import AnalysisTasks from "./analysis-tasks";
 import AnalysisTrafficCard from "./analysis-traffic-card";
 
 function Analysis() {
 	return (
 		<div className="p-2">
-			<h2>Hi, Welcome back 👋</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+			<Title as="h4">Hi, Welcome back 👋</Title>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
 				<AnalysisCard
 					cover={glass_bag}
 					title="714k"
@@ -91,14 +90,6 @@ function Analysis() {
 						<ChartRadar />
 					</CardContent>
 				</Card>
-				<Card title="News">
-					<CardHeader>
-						<CardTitle>News</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<AnalysisNews />
-					</CardContent>
-				</Card>
 				<Card title="Order Timeline">
 					<CardHeader>
 						<CardTitle>Order Timeline</CardTitle>
@@ -137,15 +128,6 @@ function Analysis() {
 								subtitle="Twitter"
 							/>
 						</div>
-					</CardContent>
-				</Card>
-
-				<Card title="Tasks">
-					<CardHeader>
-						<CardTitle>Tasks</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<AnalysisTasks />
 					</CardContent>
 				</Card>
 			</div>

@@ -45,7 +45,6 @@ export default function SettingButton() {
 		backdropFilter: "blur(20px)",
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundColor: `rgba(${themeVars.colors.background.paperChannel} / 0.9)`,
 		backgroundPosition: "right top, left bottom",
 		backgroundSize: "50, 50%",
 	};
@@ -324,7 +323,7 @@ export default function SettingButton() {
 						</div>
 					</div>
 				</ScrollArea>
-				<SheetFooter className="px-6 py-4 border border-t shrink-0 z-[2000]">
+				<SheetFooter className="px-6 py-4 border border-t shrink-0">
 					<Button
 						variant="outline"
 						className="w-full border-dashed text-text-primary hover:border-primary hover:text-primary"

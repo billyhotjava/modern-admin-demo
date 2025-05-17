@@ -1,40 +1,25 @@
-import { Progress } from "antd";
-import { useEffect, useState } from "react";
-
-import { themeVars } from "@/theme/theme.css";
-import { rgbAlpha } from "@/utils/theme";
+import "./line-loading.css";
+import { useSettings } from "@/store/settingStore";
+import { commonColors, paletteColors } from "@/theme/tokens/color";
 
 export function LineLoading() {
-	const [percent, setPercent] = useState(10);
-	const [increasing, setIncreasing] = useState(true);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			if (increasing) {
-				setPercent((prevPercent) => prevPercent + 20);
-				if (percent === 100) {
-					setIncreasing(false);
-				}
-			} else {
-				setPercent(0);
-				setIncreasing(true);
-			}
-		}, 50);
-
-		return () => {
-			clearInterval(interval);
-		};
-	}, [percent, increasing]);
+	const { themeMode } = useSettings();
 
 	return (
-		<div className="m-auto flex h-full w-96 items-center justify-center">
-			<Progress
-				percent={percent}
-				trailColor={rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.8)}
-				strokeColor={themeVars.colors.palette.primary.default}
-				showInfo={false}
-				size="small"
-			/>
+		<div className="m-auto flex min-h-full w-full items-center justify-center">
+			<div
+				className="relative h-1.5 w-96 overflow-hidden rounded"
+				style={{
+					backgroundColor: paletteColors.gray["500"],
+				}}
+			>
+				<div
+					className="absolute left-0 top-0 h-full w-1/3 animate-loading"
+					style={{
+						backgroundColor: themeMode === "light" ? commonColors.black : commonColors.white,
+					}}
+				/>
+			</div>
 		</div>
 	);
 }

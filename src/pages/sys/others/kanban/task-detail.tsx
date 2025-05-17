@@ -1,10 +1,16 @@
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
-import { H4, Muted } from "@/ui/typography";
-import { Avatar, DatePicker, Image, Input, Radio, Space, Tag } from "antd";
+import { Avatar, AvatarImage } from "@/ui/avatar";
+import { Badge } from "@/ui/badge";
+import { Button } from "@/ui/button";
+import { Calendar } from "@/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
+import { Textarea } from "@/ui/textarea";
+import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
+import { Text, Title } from "@/ui/typography";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import type { Task } from "./types";
+import { type Task, TaskPriority } from "./types";
 
 type Props = {
 	task: Task;
@@ -15,83 +21,85 @@ export default function TaskDetail({ task }: Props) {
 		<>
 			<Container>
 				<div className="item">
-					<H4>{title}</H4>
+					<Title as="h4">{title}</Title>
 				</div>
 				<div className="item">
 					<div className="label">Reporter</div>
-					<Avatar shape="circle" src={reporter} size={40} />
+					<Avatar>
+						<AvatarImage src={reporter} alt="@shadcn" />
+					</Avatar>
 				</div>
 				<div className="item">
 					<div className="label">Assignee</div>
 
-					<Space>
+					<div className="flex gap-2">
 						{assignee.map((item) => (
-							<Avatar key={item} shape="circle" src={item} size={40} />
+							<Avatar key={item}>
+								<AvatarImage src={item} alt="@shadcn" />
+							</Avatar>
 						))}
-					</Space>
+					</div>
 				</div>
 				<div className="item">
 					<div className="label">Tag</div>
-					<Space wrap>
+					<div className="flex gap-2 flex-wrap">
 						{tags.map((tag) => (
-							<Tag key={tag} color={themeVars.colors.palette.info.default}>
+							<Badge key={tag} variant="info">
 								{tag}
-							</Tag>
+							</Badge>
 						))}
-					</Space>
-				</div>
-
-				<div className="item">
-					<div className="label">Due Date</div>
-					<DatePicker variant="borderless" value={dayjs(date)} />
-				</div>
-
-				<div className="item">
-					<div className="label">Priority</div>
-					<div>
-						<Radio.Group defaultValue={priority}>
-							<Space>
-								<Radio.Button value="High">
-									<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.warning.default} />
-									<span>High</span>
-								</Radio.Button>
-
-								<Radio.Button value="Medium">
-									<Icon
-										icon="local:ic-rise"
-										size={20}
-										color={themeVars.colors.palette.success.default}
-										className="rotate-90"
-									/>
-									<span>Medium</span>
-								</Radio.Button>
-
-								<Radio.Button value="Low">
-									<Icon
-										icon="local:ic-rise"
-										size={20}
-										color={themeVars.colors.palette.info.default}
-										className="rotate-180"
-									/>
-									<span>Low</span>
-								</Radio.Button>
-							</Space>
-						</Radio.Group>
 					</div>
 				</div>
 
 				<div className="item">
+					<div className="label">Due Date</div>
+					<Popover>
+						<PopoverTrigger asChild>
+							<Button variant={"outline"}>{date ? dayjs(date).format("DD/MM/YYYY") : <span>Pick a date</span>}</Button>
+						</PopoverTrigger>
+						<PopoverContent className="w-auto p-0">
+							<Calendar mode="single" selected={date} initialFocus />
+						</PopoverContent>
+					</Popover>
+				</div>
+
+				<div className="item">
+					<div className="label">Priority</div>
+					<ToggleGroup type="single" defaultValue={priority}>
+						<ToggleGroupItem value={TaskPriority.HIGH}>
+							<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.warning.default} />
+						</ToggleGroupItem>
+						<ToggleGroupItem value={TaskPriority.MEDIUM}>
+							<Icon
+								icon="local:ic-rise"
+								size={20}
+								color={themeVars.colors.palette.success.default}
+								className="rotate-90"
+							/>
+						</ToggleGroupItem>
+						<ToggleGroupItem value={TaskPriority.LOW}>
+							<Icon
+								icon="local:ic-rise"
+								size={20}
+								color={themeVars.colors.palette.info.default}
+								className="rotate-180"
+							/>
+						</ToggleGroupItem>
+					</ToggleGroup>
+				</div>
+
+				<div className="item">
 					<div className="label">Description</div>
-					<Input.TextArea defaultValue={description} />
+					<Textarea defaultValue={description} />
 				</div>
 
 				<div className="item">
 					<div className="label">Attachments</div>
-					<Space wrap>
+					<div className="flex gap-2 flex-wrap">
 						{attachments?.map((item) => (
-							<Image key={item} src={item} width={62} height={62} className="rounded-lg" />
+							<img key={item} src={item} width={62} height={62} className="rounded-lg" alt="" />
 						))}
-					</Space>
+					</div>
 				</div>
 			</Container>
 			{/* comments */}
@@ -103,11 +111,17 @@ export default function TaskDetail({ task }: Props) {
 			>
 				{comments?.map(({ avatar, username, content, time }) => (
 					<div key={username} className="flex gap-4">
-						<Avatar src={avatar} size={40} className="shrink-0" />
+						<Avatar>
+							<AvatarImage src={avatar} alt="@shadcn" />
+						</Avatar>
 						<div className="flex grow flex-col flex-wrap gap-1 text-gray">
 							<div className="flex justify-between">
-								<Muted>{username}</Muted>
-								<Muted>{dayjs(time).format("DD/MM/YYYY HH:mm")}</Muted>
+								<Text variant="caption" color="secondary">
+									{username}
+								</Text>
+								<Text variant="caption" color="secondary">
+									{dayjs(time).format("DD/MM/YYYY HH:mm")}
+								</Text>
 							</div>
 							<p>{content}</p>
 						</div>
@@ -122,7 +136,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 24px 20px 40px;
+  padding: 0px 24px;
   .item {
     display: flex;
     align-items: center;
@@ -132,8 +146,7 @@ const Container = styled.div`
     font-size: 0.75rem;
     font-weight: 600;
     width: 100px;
-    shrink: 0;
-    color: rgb(99, 115, 129);
+    color: ${themeVars.colors.text.secondary};
     height: 40px;
     line-height: 40px;
   }

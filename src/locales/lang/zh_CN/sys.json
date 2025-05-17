@@ -84,7 +84,11 @@
 			"closeRight": "关闭右侧标签页"
 		},
 		"menu": {
-			"dashboard": "仪表",
+			"pages": "页面",
+			"others": "其他",
+			"ui": "UI",
+			"custom_ui_components": "自定义UI组件",
+			"dashboard": "仪表板",
 			"workbench": "工作台",
 			"analysis": "分析",
 			"management": "管理",
@@ -130,7 +134,7 @@
 			},
 			"disabled": "项目禁用",
 			"label": "项目标签",
-			"frame": "项目外部链接",
+			"frame": "链接",
 			"external_link": "外链",
 			"iframe": "内嵌",
 			"blank": "空白",

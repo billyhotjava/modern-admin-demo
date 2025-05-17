@@ -2,10 +2,11 @@ import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/ui/sheet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { faker } from "@faker-js/faker";
-import { Badge, Space, Tabs, type TabsProps, Tag } from "antd";
 import { type CSSProperties, type ReactNode, useState } from "react";
 
 export default function NoticeButton() {
@@ -16,24 +17,20 @@ export default function NoticeButton() {
 		backdropFilter: "blur(20px)",
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundColor: `rgba(${themeVars.colors.background.paperChannel} / 0.9)`,
 		backgroundPosition: "right top, left bottom",
 		backgroundSize: "50, 50%",
 	};
 
 	return (
 		<div>
-			<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
-				<Badge
-					count={count}
-					styles={{
-						root: { color: "inherit" },
-						indicator: { color: themeVars.colors.common.white },
-					}}
-				>
+			<div className="relative">
+				<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
 					<Icon icon="solar:bell-bing-bold-duotone" size={24} />
+				</Button>
+				<Badge variant="error" overlay="circle" className="absolute -right-2 -top-2">
+					{count}
 				</Badge>
-			</Button>
+			</div>
 			<Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
 				<SheetContent side="right" className="w-[420px] p-0 [&>button]:hidden" style={style}>
 					<SheetHeader className="flex flex-row items-center justify-between px-6 py-4">
@@ -76,11 +73,9 @@ function NoticeTab() {
 						<span className="text-xs font-light"> sent you a frind request</span>
 					</div>
 					<span className="text-xs font-light opacity-60">about 1 hour ago</span>
-					<div className="mt-2">
-						<Space>
-							<Button>Accept</Button>
-							<Button variant="outline">Refuse</Button>
-						</Space>
+					<div className="mt-2 flex gap-2">
+						<Button>Accept</Button>
+						<Button variant="outline">Refuse</Button>
 					</div>
 				</div>
 			</div>
@@ -101,9 +96,7 @@ function NoticeTab() {
 						</div>
 					</div>
 					<div className="mt-2">
-						<Space>
-							<Button>Reply</Button>
-						</Space>
+						<Button>Reply</Button>
 					</div>
 				</div>
 			</div>
@@ -118,9 +111,7 @@ function NoticeTab() {
 					</div>
 					<span className="text-xs font-light opacity-60">1 days ago</span>
 					<div className="mt-2">
-						<Space>
-							<Button>Reply</Button>
-						</Space>
+						<Button>Reply</Button>
 					</div>
 				</div>
 			</div>
@@ -156,11 +147,9 @@ function NoticeTab() {
 						<span className="font-medium">$3000</span>
 					</div>
 					<span className="text-xs font-light opacity-60">4 days ago</span>
-					<div className="mt-2">
-						<Space>
-							<Button>Pay</Button>
-							<Button variant="outline">Refuse</Button>
-						</Space>
+					<div className="mt-2 flex gap-2">
+						<Button>Pay</Button>
+						<Button variant="outline">Refuse</Button>
 					</div>
 				</div>
 			</div>
@@ -206,41 +195,28 @@ function NoticeTab() {
 			</div>
 		</div>
 	);
-	const items: TabsProps["items"] = [
-		{
-			key: "1",
-			label: (
-				<div className="flex">
-					<span>All</span>
-					<Tag color="processing">22</Tag>
-				</div>
-			),
-			children: tabChildren,
-		},
-		{
-			key: "2",
-			label: (
-				<div className="flex">
-					<span>Unread</span>
-					<Tag color="error">12</Tag>
-				</div>
-			),
-			children: tabChildren,
-		},
-		{
-			key: "3",
-			label: (
-				<div className="flex">
-					<span>Archived</span>
-					<Tag color="green">10</Tag>
-				</div>
-			),
-			children: tabChildren,
-		},
-	];
+
 	return (
 		<div className="flex flex-col px-6">
-			<Tabs defaultActiveKey="1" items={items} />
+			<Tabs defaultValue="all" className="w-full">
+				<TabsList>
+					<TabsTrigger value="all" className="flex gap-1">
+						<span>All</span>
+						<Badge variant="info">22</Badge>
+					</TabsTrigger>
+					<TabsTrigger value="unread" className="flex gap-1">
+						<span>Unread</span>
+						<Badge variant="error">12</Badge>
+					</TabsTrigger>
+					<TabsTrigger value="archived" className="flex gap-1">
+						<span>Archived</span>
+						<Badge variant="success">10</Badge>
+					</TabsTrigger>
+				</TabsList>
+				<TabsContent value="all">{tabChildren}</TabsContent>
+				<TabsContent value="unread">{tabChildren}</TabsContent>
+				<TabsContent value="archived">{tabChildren}</TabsContent>
+			</Tabs>
 		</div>
 	);
 }

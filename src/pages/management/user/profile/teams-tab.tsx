@@ -1,9 +1,9 @@
 import { fakeAvatars } from "@/_mock/utils";
 import { Icon } from "@/components/icon";
+import { Avatar, AvatarImage } from "@/ui/avatar";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent } from "@/ui/card";
-import { faker } from "@faker-js/faker";
-import { Avatar, Tag } from "antd";
 
 export default function TeamsTab() {
 	const items = [
@@ -63,16 +63,16 @@ export default function TeamsTab() {
 						</header>
 						<main className="my-4 opacity-70">{item.desc}</main>
 						<footer className="flex w-full items-center">
-							<Avatar.Group max={{ count: 4 }}>
-								{item.members.map((memberAvatar) => (
-									<Avatar src={memberAvatar} key={memberAvatar} />
-								))}
-							</Avatar.Group>
-							<div className="ml-auto flex items-center">
+							{item.members.slice(0, 4).map((memberAvatar) => (
+								<Avatar key={memberAvatar}>
+									<AvatarImage src={memberAvatar} />
+								</Avatar>
+							))}
+							<div className="ml-auto flex items-center gap-1">
 								{item.tags.map((tag) => (
-									<Tag color={faker.color.rgb()} key={tag} className="text-sm">
+									<Badge key={tag} variant="info">
 										{tag}
-									</Tag>
+									</Badge>
 								))}
 							</div>
 						</footer>

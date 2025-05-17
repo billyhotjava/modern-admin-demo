@@ -1,14 +1,13 @@
-import { Icon } from "@/components/icon";
 import Logo from "@/components/logo";
 import { down, useMediaQuery } from "@/hooks";
-import { useSettingActions, useSettings } from "@/store/settingStore";
-import { Button } from "@/ui/button";
+import { useSettings } from "@/store/settingStore";
 import { cn } from "@/utils";
 import { ThemeLayout } from "#/enum";
 import Header from "./header";
 import Main from "./main";
-import NavBar from "./nav-bar";
+import { NavHorizontalLayout, NavMobileLayout, NavToggleButton, NavVerticalLayout, navData } from "./nav";
 
+// Dashboard Layout
 export default function DashboardLayout() {
 	const isMobile = useMediaQuery(down("md"));
 	const { themeLayout } = useSettings();
@@ -25,60 +24,54 @@ export default function DashboardLayout() {
 	);
 }
 
+// Pc Layout
 function PcLayout() {
 	const { themeLayout } = useSettings();
 
+	if (themeLayout === ThemeLayout.Horizontal) return <PcHorizontalLayout />;
+	return <PcVerticalLayout />;
+}
+
+function PcHorizontalLayout() {
+	return (
+		<div
+			data-slot="slash-layout-content"
+			className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out")}
+		>
+			<Header leftSlot={<Logo />} />
+			<NavHorizontalLayout data={navData} />
+			<Main />
+		</div>
+	);
+}
+
+function PcVerticalLayout() {
+	const settings = useSettings();
+	const { themeLayout } = settings;
+
 	return (
 		<>
-			{themeLayout !== ThemeLayout.Horizontal && <NavBar />}
-
+			<NavVerticalLayout data={navData} />
 			<div
 				data-slot="slash-layout-content"
-				className={cn("w-full flex flex-col transition-all duration-300 ease-in-out", {
+				className={cn("w-full h-screen flex flex-col transition-[padding] duration-300 ease-in-out", {
 					"pl-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
 					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}
 			>
-				<Header headerLeftSlot={themeLayout === ThemeLayout.Horizontal ? <Logo /> : <VerticalNavTrigger />} />
-
-				{themeLayout === ThemeLayout.Horizontal && (
-					<NavBar className="sticky top-[var(--layout-header-height)] left-0" />
-				)}
-
+				<Header leftSlot={<NavToggleButton />} />
 				<Main />
 			</div>
 		</>
 	);
 }
 
+// Mobile Layout
 function MobileLayout() {
 	return (
 		<>
-			<Header headerLeftSlot={<NavBar />} />
+			<Header leftSlot={<NavMobileLayout data={navData} />} />
 			<Main />
 		</>
-	);
-}
-
-function VerticalNavTrigger() {
-	const settings = useSettings();
-	const { themeLayout } = settings;
-	const { setSettings } = useSettingActions();
-
-	if (themeLayout === ThemeLayout.Horizontal) return null;
-
-	const iconName = themeLayout === ThemeLayout.Vertical ? "line-md:menu-unfold-left" : "line-md:menu-unfold-right";
-
-	const toggleThemeLayout = () => {
-		setSettings({
-			...settings,
-			themeLayout: themeLayout === ThemeLayout.Vertical ? ThemeLayout.Mini : ThemeLayout.Vertical,
-		});
-	};
-
-	return (
-		<Button variant="secondary" size="icon" onClick={toggleThemeLayout}>
-			<Icon icon={iconName} size={20} className="text-text-secondary" />
-		</Button>
 	);
 }

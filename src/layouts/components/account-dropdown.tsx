@@ -1,5 +1,5 @@
 import { useLoginStateContext } from "@/pages/sys/login/providers/login-provider";
-import { useRouter } from "@/router/hooks";
+import { useRouter } from "@/routes/hooks";
 import { useUserActions, useUserInfo } from "@/store/userStore";
 import { Button } from "@/ui/button";
 import {
@@ -30,7 +30,7 @@ export default function AccountDropdown() {
 		} catch (error) {
 			console.log(error);
 		} finally {
-			replace("/login");
+			replace("/auth/login");
 		}
 	};
 

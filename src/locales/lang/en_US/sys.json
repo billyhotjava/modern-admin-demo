@@ -70,6 +70,11 @@
 			"noAccount": "Don't have an account?"
 		},
 		"menu": {
+			"pages": "Pages",
+			"others": "Others",
+			"ui": "UI",
+			"custom_ui_components": "Custom UI Components",
+			"dashboard": "Dashboard",
 			"analysis": "Analysis",
 			"animate": "Animate",
 			"blank": "Blank",
@@ -78,7 +83,6 @@
 			"chart": "Chart",
 			"clipboard": "Clipboard",
 			"components": "Components",
-			"dashboard": "Dashboard",
 			"disabled": "Item Disabled",
 			"editor": "Editor",
 			"error": {

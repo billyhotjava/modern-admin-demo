@@ -1,13 +1,16 @@
 import { fakeAvatars } from "@/_mock/utils";
+import { AvatarGroup } from "@/components/avatar-group";
 import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
+import { Avatar, AvatarImage } from "@/ui/avatar";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
-import { Small } from "@/ui/typography";
-import { Muted } from "@/ui/typography";
+import { Progress } from "@/ui/progress";
+import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
-import { Avatar, Progress, Space, Table, Tag, Timeline } from "antd";
+import { Table, Timeline } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -97,32 +100,32 @@ export default function ProfileTab() {
 			avatar: <Icon icon="devicon:react" size={36} />,
 			name: "React Developers",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="warning">Developer</Tag>,
+			tag: <Badge variant="warning">Developer</Badge>,
 		},
 		{
 			avatar: <Icon icon="devicon:figma" size={36} />,
 			name: "UI Designer",
-			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="cyan">Designer</Tag>,
+			members: `${faker.number.int()} Members`,
+			tag: <Badge variant="info">Designer</Badge>,
 		},
 		{
 			avatar: <Icon icon="logos:jest" size={36} />,
 			name: "Test Team",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="success">Test</Tag>,
+			tag: <Badge variant="success">Test</Badge>,
 		},
 		{
 			avatar: <Icon icon="logos:nestjs" size={36} />,
 			name: "Nest.js Developers",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="warning">Developer</Tag>,
+			tag: <Badge variant="warning">Developer</Badge>,
 		},
 
 		{
 			avatar: <Icon icon="logos:twitter" size={36} />,
 			name: "Digital Marketing",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag>Marketing</Tag>,
+			tag: <Badge variant="info">Marketing</Badge>,
 		},
 	];
 
@@ -165,29 +168,27 @@ export default function ProfileTab() {
 			title: "TEAM",
 			dataIndex: "team",
 			render: (val: string[]) => (
-				<Avatar.Group>
+				<AvatarGroup max={3}>
 					{val.map((item) => (
-						<Avatar src={item} key={item} />
+						<Avatar key={item}>
+							<AvatarImage src={item} />
+						</Avatar>
 					))}
-				</Avatar.Group>
+				</AvatarGroup>
 			),
 		},
 		{
 			title: "STATUS",
 			dataIndex: "status",
-			render: (val) => (
-				<Progress percent={val} strokeColor={themeVars.colors.palette.primary.default} trailColor="transparent" />
-			),
+			render: (val) => <Progress value={val} />,
 		},
 		{
 			title: "ACTIONS",
 			dataIndex: "action",
 			render: () => (
-				<Space size="middle">
-					<Button variant="ghost" size="icon">
-						<Icon icon="fontisto:more-v-a" />
-					</Button>
-				</Space>
+				<Button variant="ghost" size="icon">
+					<Icon icon="fontisto:more-v-a" />
+				</Button>
 			),
 		},
 	];
@@ -229,10 +230,12 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>8 Invoices have been paid</Small>
+													<Text>8 Invoices have been paid</Text>
 													<div className="opacity-50">Wednesday</div>
 												</div>
-												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
+												<Text variant="caption" color="secondary">
+													Invoices have been paid to the company.
+												</Text>
 
 												<div className="mt-2 flex items-center gap-2">
 													<Icon icon="local:file-pdf" size={30} />
@@ -246,10 +249,12 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>Create a new project for client 😎</Small>
+													<Text>Create a new project for client 😎</Text>
 													<div className="opacity-50">April, 18</div>
 												</div>
-												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
+												<Text variant="caption" color="secondary">
+													Invoices have been paid to the company.
+												</Text>
 												<div className="mt-2 flex items-center gap-2">
 													<img alt="" src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" />
 													<span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
@@ -262,10 +267,12 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>Order #37745 from September</Small>
+													<Text>Order #37745 from September</Text>
 													<div className="opacity-50">January, 10</div>
 												</div>
-												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
+												<Text variant="caption" color="secondary">
+													Invoices have been paid to the company.
+												</Text>
 											</div>
 										),
 									},
@@ -274,7 +281,7 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>Public Meeting</Small>
+													<Text>Public Meeting</Text>
 													<div className="opacity-50">September, 30</div>
 												</div>
 											</div>

@@ -99,12 +99,12 @@ export const paletteColors = {
 
 export const commonColors = {
 	white: "#FFFFFF",
-	black: "#000000",
+	black: "#09090B",
 };
 
 export const actionColors = {
-	hover: rgbAlpha(paletteColors.gray[500], 0.08),
-	selected: rgbAlpha(paletteColors.gray[500], 0.08),
+	hover: rgbAlpha(paletteColors.gray[500], 0.1),
+	selected: rgbAlpha(paletteColors.gray[500], 0.1),
 	focus: rgbAlpha(paletteColors.gray[500], 0.12),
 	disabled: rgbAlpha(paletteColors.gray[500], 0.48),
 	active: rgbAlpha(paletteColors.gray[500], 1),
@@ -136,8 +136,8 @@ export const darkColorTokens = {
 		disabled: paletteColors.gray[600],
 	},
 	background: {
-		default: paletteColors.gray[900],
-		paper: paletteColors.gray[800],
-		neutral: "#28323D",
+		default: commonColors.black,
+		paper: commonColors.black,
+		neutral: "#27272A",
 	},
 };
