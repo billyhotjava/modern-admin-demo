@@ -12,6 +12,7 @@ const WorkbenchPage = lazy(() => import("@/pages/dashboard/workbench"));
 const AnalysisPage = lazy(() => import("@/pages/dashboard/analysis"));
 const DataPlatformPage = lazy(() => import("@/pages/dashboard/data-platform"));
 const DataCatalogPage = lazy(() => import("@/pages/dashboard/data-platform/data-catalog"));
+const DataCatalogDetailPage = lazy(() => import("@/pages/dashboard/data-platform/data-catalog-detail"));
 const DataIngestionPage = lazy(() => import("@/pages/dashboard/data-platform/data-ingestion"));
 const DataProcessingPage = lazy(() => import("@/pages/dashboard/data-platform/data-processing"));
 const DataGovernancePage = lazy(() => import("@/pages/dashboard/data-platform/data-governance"));
@@ -51,6 +52,7 @@ export const dashboardRoutes: RouteObject[] = [
 					{ path: "analysis", element: <AnalysisPage /> },
 					{ path: "data-platform", element: <DataPlatformPage /> },
 					{ path: "data-platform/data-catalog", element: <DataCatalogPage /> },
+					{ path: "data-platform/data-catalog/:tableId", element: <DataCatalogDetailPage /> },
 					{ path: "data-platform/data-ingestion", element: <DataIngestionPage /> },
 					{ path: "data-platform/data-ingestion/:connectionId", element: <DataIngestionPage /> },
 					{ path: "data-platform/data-processing", element: <DataProcessingPage /> },
