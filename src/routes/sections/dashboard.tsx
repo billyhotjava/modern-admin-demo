@@ -10,6 +10,12 @@ const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 // dashboard
 const WorkbenchPage = lazy(() => import("@/pages/dashboard/workbench"));
 const AnalysisPage = lazy(() => import("@/pages/dashboard/analysis"));
+const DataPlatformPage = lazy(() => import("@/pages/dashboard/data-platform"));
+const DataCatalogPage = lazy(() => import("@/pages/dashboard/data-platform/data-catalog"));
+const DataIngestionPage = lazy(() => import("@/pages/dashboard/data-platform/data-ingestion"));
+const DataProcessingPage = lazy(() => import("@/pages/dashboard/data-platform/data-processing"));
+const DataGovernancePage = lazy(() => import("@/pages/dashboard/data-platform/data-governance"));
+const SystemMonitoringPage = lazy(() => import("@/pages/dashboard/data-platform/system-monitoring"));
 
 // error
 const Page403 = lazy(() => import("@/pages/sys/error/Page403"));
@@ -43,6 +49,13 @@ export const dashboardRoutes: RouteObject[] = [
 					{ index: true, element: <WorkbenchPage /> },
 					{ path: "workbench", element: <WorkbenchPage /> },
 					{ path: "analysis", element: <AnalysisPage /> },
+					{ path: "data-platform", element: <DataPlatformPage /> },
+					{ path: "data-platform/data-catalog", element: <DataCatalogPage /> },
+					{ path: "data-platform/data-ingestion", element: <DataIngestionPage /> },
+					{ path: "data-platform/data-ingestion/:connectionId", element: <DataIngestionPage /> },
+					{ path: "data-platform/data-processing", element: <DataProcessingPage /> },
+					{ path: "data-platform/data-governance", element: <DataGovernancePage /> },
+					{ path: "data-platform/system-monitoring", element: <SystemMonitoringPage /> },
 				],
 			},
 			{
