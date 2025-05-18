@@ -16,7 +16,7 @@ function App({ children }: { children: React.ReactNode }) {
 				<ThemeProvider adapters={[AntdAdapter]}>
 					<VercelAnalytics />
 					<Helmet>
-						<title>Slash Admin</title>
+						<title>UMP Admin</title>
 						<link rel="icon" href={Logo} />
 					</Helmet>
 					<Toast />
