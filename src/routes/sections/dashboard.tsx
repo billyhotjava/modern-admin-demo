@@ -10,13 +10,14 @@ const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 // dashboard
 const WorkbenchPage = lazy(() => import("@/pages/dashboard/workbench"));
 const AnalysisPage = lazy(() => import("@/pages/dashboard/analysis"));
-const DataPlatformPage = lazy(() => import("@/pages/dashboard/data-platform"));
-const DataCatalogPage = lazy(() => import("@/pages/dashboard/data-platform/data-catalog"));
-const DataCatalogDetailPage = lazy(() => import("@/pages/dashboard/data-platform/data-catalog-detail"));
-const DataIngestionPage = lazy(() => import("@/pages/dashboard/data-platform/data-ingestion"));
-const DataProcessingPage = lazy(() => import("@/pages/dashboard/data-platform/data-processing"));
-const DataGovernancePage = lazy(() => import("@/pages/dashboard/data-platform/data-governance"));
-const SystemMonitoringPage = lazy(() => import("@/pages/dashboard/data-platform/system-monitoring"));
+const DataPlatformPage = lazy(() => import("@/pages/data-platform"));
+const DataCatalogPage = lazy(() => import("@/pages/governance/data-catalog"));
+const DataCatalogDetailPage = lazy(() => import("@/pages/governance/data-catalog-detail"));
+const DataIngestionPage = lazy(() => import("@/pages/pipelines/ingestion/data-ingestion"));
+const DataProcessingPage = lazy(() => import("@/pages/analytics/data-processing"));
+const RecentQueriesPage = lazy(() => import("@/pages/analytics/recent-queries"));
+const DataGovernancePage = lazy(() => import("@/pages/governance/data-governance"));
+const SystemMonitoringPage = lazy(() => import("@/pages/monitoring/system-monitoring"));
 
 // error
 const Page403 = lazy(() => import("@/pages/sys/error/Page403"));
@@ -24,6 +25,7 @@ const Page404 = lazy(() => import("@/pages/sys/error/Page404"));
 const Page500 = lazy(() => import("@/pages/sys/error/Page500"));
 
 // management
+const ManagementIndexPage = lazy(() => import("@/pages/management"));
 const ProfilePage = lazy(() => import("@/pages/management/user/profile"));
 const AccountPage = lazy(() => import("@/pages/management/user/account"));
 const OrganizationPage = lazy(() => import("@/pages/management/system/organization"));
@@ -56,6 +58,7 @@ export const dashboardRoutes: RouteObject[] = [
 					{ path: "data-platform/data-ingestion", element: <DataIngestionPage /> },
 					{ path: "data-platform/data-ingestion/:connectionId", element: <DataIngestionPage /> },
 					{ path: "data-platform/data-processing", element: <DataProcessingPage /> },
+					{ path: "data-platform/recent-queries", element: <RecentQueriesPage /> },
 					{ path: "data-platform/data-governance", element: <DataGovernancePage /> },
 					{ path: "data-platform/system-monitoring", element: <SystemMonitoringPage /> },
 				],
@@ -63,7 +66,7 @@ export const dashboardRoutes: RouteObject[] = [
 			{
 				path: "management",
 				children: [
-					{ index: true, element: <Navigate to="user" replace /> },
+					{ index: true, element: <ManagementIndexPage /> },
 					{
 						path: "user",
 						children: [
